@@ -1,0 +1,4 @@
+1) installer le projet à partir de laragon , bien le nommé
+2) installer laravel/ui : composer require laravel/ui
+3) installer les dep js : yarn 
+4) installer ui vue : php artisan ui vue
