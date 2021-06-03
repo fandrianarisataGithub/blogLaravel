@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <modal-add-article @article-added="refresharticle"></modal-add-article>
+        <modal-edit-article @article-updated="refresharticle"></modal-edit-article>
         <div class="row justify-content-center">
             <div class="col-md-8">
                <table class="table">
@@ -9,6 +10,7 @@
                            <th>Id</th>
                            <th>Titre</th>
                            <th>Contenu</th>
+                           <th>Action</th>
                        </tr>
                    </thead>
                    <tbody>
@@ -16,6 +18,10 @@
                            <td scope="row">{{ post.id }}</td>
                            <td>{{ post.title }}</td>
                            <td>{{ post.content }}</td>
+                           <td>
+                               <button class="btn btn-info btn-sm"><span class="fas fa-edit"></span></button>
+                               <button class="btn btn-danger btn-sm"><span class="fas fa-trash"></span></button>
+                           </td>
                        </tr>
                    </tbody>
                </table>
@@ -36,6 +42,7 @@
         },
 
         created(){
+           
             axios
                 .get('http://laravel0.local/articlesbdd')
                 .then(response => {
@@ -52,7 +59,9 @@
                         this.articles = response.data;
                     });
             }, 
-            refresharticle(articles){
+            refresharticle: function(articles){
+                $('#exampleModal').modal('hide');
+                $('#exampleModal form')[0].reset();
                 this.articles = articles.data;
             }
         },

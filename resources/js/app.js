@@ -40,6 +40,7 @@ Vue.component('home-component', require('./components/homeComponent.vue').defaul
 Vue.component('articles-component', require('./components/ArticlesComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('modal-add-article', require('./components/ModalAddArticleComponent.vue').default);
+Vue.component('modal-edit-article', require('./components/ModalEditArticleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49,5 +50,6 @@ Vue.component('modal-add-article', require('./components/ModalAddArticleComponen
 
 const app = new Vue({
     el: '#app',
-    router: router
+    router: router,
+
 });

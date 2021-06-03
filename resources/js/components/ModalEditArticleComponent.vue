@@ -1,14 +1,14 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#exampleModal">
-            Ajouter un article
+        <button type="button" class="btn btn-primary my-3" data-toggle="modal" data-target="#modalEditArticle">
+            Modifier un article
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalEditArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nouvel article</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modifier l'article'</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,7 +25,7 @@
                         <textarea placeholder="Le contenu de votre article" class="form-control" v-model="content" name="" id="content" cols="30" rows="10"></textarea>
                         <small id="contentHelp" class="form-text text-muted">Veuiller renseigner un contenu à votre article</small>
                     </div>
-                    <button id="btn_add_article" @click="storeArticle" class="btn btn-primary">Enregister</button>
+                    <button id="btn_add_article" @click="editArticle" class="btn btn-primary">Modifier</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -42,18 +42,19 @@ export default {
     data(){
         return {
             title : '',
-            content : ''
+            content : '',
+            id : ''
         }
     },
 
     methods : {
-        storeArticle(){
-            axios.post('http://laravel0.local/storeArticle', {
-                title : this.title,
-                content : this.content
-            })
+        editArticle(){
+            alert('coucou')
+            let id = "1";
+            axios.post('http://laravel0.local/editArticle/' + id)
             .then(response => {
-               this.$emit('article-added', response);
+                alert(response)
+               //this.$emit('article-edited', response);
             })
             .catch(function (error) {
                 alert(error);
@@ -62,7 +63,7 @@ export default {
     },
 
     mounted(){
-        console.log('modal add article component');
+        console.log('modal edit article component');
     }
 }
 </script>

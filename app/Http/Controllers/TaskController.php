@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index()
     {
         //$tasks = Task::orderBy('created_at', 'DESC')->paginate(2);
-        $tasks = Task::orderBy('created_at', 'DESC')->paginate(2);
+        $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
         //dd($tasks);
         return response()->json($tasks);
     }
@@ -31,7 +31,7 @@ class TaskController extends Controller
         if($request->isXmlHttpRequest()){
             $task = Task::create($request->all());
             if($task){
-                $tasks = Task::orderBy('created_at', 'DESC')->paginate(2);
+                $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
               
                 return response()->json($tasks);
             }
@@ -66,9 +66,25 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $article = Task::find($id);
+        
+       
+        if($request->isXmlHttpRequest()){
+
+            $title = $request->get('title');
+            $content = $request->get('content');
+
+            $article->update([
+                'title' => $title,
+                'content' => $content
+            ]);
+
+            $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
+              
+            return response()->json($title);
+        }
     }
 
     /**

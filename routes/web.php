@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/articlesbdd', 'App\Http\Controllers\TaskController@index');
 
 Route::post('/storeArticle', 'App\Http\Controllers\TaskController@create');
+
+Route::post('/editArticle/{id}', 'App\Http\Controllers\TaskController@edit');
