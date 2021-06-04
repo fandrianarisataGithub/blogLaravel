@@ -8,10 +8,14 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 import VueRouter from 'vue-router';
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
 Vue.use(VueRouter)
 
 import Articles from './components/ArticlesComponent.vue';
 import Home from './components/homeComponent.vue';
+import ListeAlert from './components/ListeAlertComponent.vue';
 
 const routes = [{
         path: "/articles",
@@ -20,6 +24,10 @@ const routes = [{
     {
         path: "/",
         component: Home
+    },
+    {
+        path: "/alerts",
+        component: ListeAlert
     }
 ]
 
@@ -41,6 +49,7 @@ Vue.component('articles-component', require('./components/ArticlesComponent.vue'
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('modal-add-article', require('./components/ModalAddArticleComponent.vue').default);
 Vue.component('modal-edit-article', require('./components/ModalEditArticleComponent.vue').default);
+Vue.component('alert-component', require('./components/ListeAlertComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

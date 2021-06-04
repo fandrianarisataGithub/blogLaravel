@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class TaskController extends Controller
 {
@@ -55,26 +56,26 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        $article = Task::find($id);
+        return response()->json($article);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id, Request $request)
     {
         $article = Task::find($id);
-        
        
         if($request->isXmlHttpRequest()){
-
-            $title = $request->get('title');
-            $content = $request->get('content');
+            $requestData = $request->all();
+            $title = $requestData['title'];
+            $content = $requestData['content'];
 
             $article->update([
                 'title' => $title,
@@ -83,30 +84,24 @@ class TaskController extends Controller
 
             $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
               
-            return response()->json($title);
+            return response()->json($requestData);
         }
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Remove the specified resource from storage.
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function destroy($id, Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $article = Task::find($id);
+        if($request->isXmlHttpRequest()){
+            $article->delete();
+            $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
+                
+            return response()->json($tasks);
+        }
     }
 }

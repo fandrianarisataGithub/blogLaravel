@@ -16134,3 +16134,14 @@ readers do not read off random characters that represent icons */
 body {
   font-family: "Nunito", sans-serif;
 }
+
+.tab_el_title {
+  width: 20%;
+  padding-bottom: 5px;
+}
+
+.tab_el_content {
+  width: 50%;
+  padding-bottom: 5px;
+  text-align: justify;
+}

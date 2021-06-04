@@ -17,8 +17,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/articlesbdd', 'App\Http\Controllers\TaskController@index');
+Route::get('/articlesbdd', 'App\Http\Controllers\TaskController@index')->name("article_index");
 
-Route::post('/storeArticle', 'App\Http\Controllers\TaskController@create');
+Route::get('/showArticle/{id}', 'App\Http\Controllers\TaskController@show')->name("article_show");
 
-Route::post('/editArticle/{id}', 'App\Http\Controllers\TaskController@edit');
+Route::post('/storeArticle', 'App\Http\Controllers\TaskController@create')->name("article_create");
+
+Route::post('/editArticle/{id}', 'App\Http\Controllers\TaskController@edit')->name("article_edit");
+
+Route::post('/deleteArticle/{id}', 'App\Http\Controllers\TaskController@destroy')->name("article_delete");
+

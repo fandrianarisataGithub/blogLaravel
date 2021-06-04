@@ -25,7 +25,7 @@
                         <textarea placeholder="Le contenu de votre article" class="form-control" v-model="content" name="" id="content" cols="30" rows="10"></textarea>
                         <small id="contentHelp" class="form-text text-muted">Veuiller renseigner un contenu à votre article</small>
                     </div>
-                    <button id="btn_add_article" @click="storeArticle" class="btn btn-primary">Enregister</button>
+                    <button id="btn_add_article" @click.prevent="storeArticle" class="btn btn-primary">Enregister</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -48,7 +48,7 @@ export default {
 
     methods : {
         storeArticle(){
-            axios.post('http://laravel0.local/storeArticle', {
+            axios.post('/storeArticle', {
                 title : this.title,
                 content : this.content
             })

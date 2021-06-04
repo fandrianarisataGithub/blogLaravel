@@ -26,7 +26,10 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
+        "datatables.net-bs4": "^1.10.24",
+        "install": "^0.13.0",
         "laravel-vue-pagination": "^2.3.1",
+        "sweetalert2": "^11.0.16",
         "vue-router": "^3.5.1"
     }
 }
